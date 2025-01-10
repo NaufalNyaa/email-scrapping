@@ -43,14 +43,14 @@ pip3 install beautifulsoup4
 
 ### 3. Clone the Repository
 ```bash
-git clone https://github.com/NaufalNyaa/mailscrapper
-cd mailscrapper
+git clone https://github.com/NaufalNyaa/email-scrapping.git
+cd email-scrapping
 ```
 
 
 ### 5. Run the Tool
 ```bash
-python scrapper.py
+python mail.py
 ```
 
 
