@@ -1,7 +1,7 @@
 
 # Email Scrapper Test | Live Demo
+https://github.com/user-attachments/assets/35131173-1bcb-4259-9f3e-6b1097fa694d
 
-![Banner](banner.png)
 
 ![Version](https://img.shields.io/badge/version-1.0(Beta)-brightgreen)
 ![Python](https://img.shields.io/badge/python-3.7+-blue)
