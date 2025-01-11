@@ -56,4 +56,4 @@ python mail.py
 
 ---
 
-**Developed by MbullGacorrr**
+**Developed by NaufalNyaa**
