@@ -14,7 +14,10 @@ def ketik(o):
         sys.stdout.flush()
         sleep(0.015)
 
-system("clear")
+if sys.platform == "win32":
+    system("cls")
+else:
+    system("clear")
 sleep(1)
 
 def tamp():
