@@ -1,0 +1,332 @@
+===============================================================================
+                    TIPS PENGGUNAAN EMAIL SCRAPER ADVANCED v2.0
+                          NaufalNyaa x MbullHexWorld
+===============================================================================
+
+📋 DAFTAR ISI
+=============
+1. Tips Dasar Penggunaan
+2. Pengaturan Parameter Optimal
+3. Strategi Berdasarkan Jenis Website
+4. Troubleshooting Umum
+5. Best Practices
+6. Contoh Command Lengkap
+7. Interpretasi Hasil
+8. Penggunaan Etis
+
+===============================================================================
+
+🚀 1. TIPS DASAR PENGGUNAAN
+===========================
+
+A. PERSIAPAN AWAL
+-----------------
+• Pastikan koneksi internet stabil
+• Install semua dependencies: pip install -r requirements.txt
+• Test dengan website kecil dulu sebelum target besar
+• Siapkan folder khusus untuk hasil scraping
+
+B. MEMILIH MODE YANG TEPAT
+--------------------------
+• Mode Interaktif: Untuk pemula atau testing
+  Command: python mail_advanced.py
+
+• Mode Command Line: Untuk automation atau advanced user
+  Command: python mail_advanced.py -u https://target.com [options]
+
+C. VALIDASI URL TARGET
+----------------------
+• Selalu gunakan https:// atau http://
+• Test buka URL di browser dulu
+• Pastikan website dapat diakses
+• Cek apakah ada halaman contact/about yang berisi email
+
+===============================================================================
+
+⚙️ 2. PENGATURAN PARAMETER OPTIMAL
+===================================
+
+A. DEPTH (KEDALAMAN CRAWLING)
+-----------------------------
+• Website Kecil (< 100 halaman): depth 2-3
+• Website Medium (100-1000 halaman): depth 3-4
+• Website Besar (> 1000 halaman): depth 4-6
+• Universitas/Institusi: depth 5-7
+
+B. THREADS (JUMLAH THREAD)
+--------------------------
+• Koneksi Lambat: 3-5 threads
+• Koneksi Normal: 5-8 threads
+• Koneksi Cepat: 8-12 threads
+• Server Powerful: 10-15 threads
+• JANGAN > 20 threads (bisa banned)
+
+C. DELAY SETTINGS
+-----------------
+• Website Friendly: 1-2 detik
+• Website Normal: 2-3 detik
+• Website Strict: 3-5 detik
+• Website dengan Anti-Bot: 5-10 detik
+
+D. OUTPUT FORMATS
+-----------------
+• Untuk Analisis: json, xlsx
+• Untuk Import: csv
+• Untuk Dokumentasi: txt
+• Untuk Semua: txt,csv,json,xlsx
+
+===============================================================================
+
+🎯 3. STRATEGI BERDASARKAN JENIS WEBSITE
+=========================================
+
+A. WEBSITE UNIVERSITAS/SEKOLAH
+-------------------------------
+Command Optimal:
+python mail_advanced.py -u https://university.edu -d 5 -t 8 --delay-min 2 --delay-max 4 -o txt,csv,xlsx
+
+Tips:
+• Focus pada halaman: /faculty, /staff, /contact, /directory
+• Gunakan depth tinggi (5-6)
+• Delay sedang (2-4 detik)
+• Biasanya banyak email di subdomain
+
+B. WEBSITE PERUSAHAAN
+---------------------
+Command Optimal:
+python mail_advanced.py -u https://company.com -d 4 -t 6 --delay-min 1 --delay-max 3 -o csv,json
+
+Tips:
+• Focus pada: /about, /team, /contact, /careers
+• Depth medium (3-4)
+• Threads sedang (5-8)
+• Sering ada email di press release
+
+C. WEBSITE PEMERINTAH
+---------------------
+Command Optimal:
+python mail_advanced.py -u https://gov-site.go.id -d 6 -t 5 --delay-min 3 --delay-max 5 --no-robots -o txt,xlsx
+
+Tips:
+• Gunakan delay tinggi (3-5 detik)
+• Depth tinggi untuk struktur kompleks
+• Sering perlu --no-robots
+• Banyak email di direktori pegawai
+
+D. WEBSITE E-COMMERCE
+---------------------
+Command Optimal:
+python mail_advanced.py -u https://shop.com -d 3 -t 10 --cloudflare --delay-min 2 -o csv
+
+Tips:
+• Sering pakai Cloudflare (gunakan --cloudflare)
+• Email biasanya di: /contact, /support, /about
+• Depth rendah cukup (2-3)
+• Threads tinggi OK
+
+E. WEBSITE BERITA/MEDIA
+-----------------------
+Command Optimal:
+python mail_advanced.py -u https://news.com -d 4 -t 8 --delay-min 1 --delay-max 2 -o json,xlsx
+
+Tips:
+• Banyak email di halaman author/journalist
+• Struktur artikel bisa dalam
+• Email di footer dan contact page
+• Biasanya server kuat, delay bisa rendah
+
+===============================================================================
+
+🔧 4. TROUBLESHOOTING UMUM
+===========================
+
+A. ERROR "CONNECTION TIMEOUT"
+-----------------------------
+Solusi:
+• Kurangi jumlah threads: -t 3
+• Tambah delay: --delay-min 3 --delay-max 5
+• Cek koneksi internet
+• Coba gunakan --cloudflare
+
+B. ERROR "403 FORBIDDEN"
+------------------------
+Solusi:
+• Gunakan --cloudflare
+• Tambah delay lebih besar
+• Kurangi threads
+• Coba --no-robots
+
+C. ERROR "TOO MANY REQUESTS"
+----------------------------
+Solusi:
+• Kurangi threads drastis: -t 2
+• Tambah delay: --delay-min 5 --delay-max 10
+• Tunggu beberapa menit, coba lagi
+• Ganti IP/VPN
+
+D. HASIL EMAIL SEDIKIT
+----------------------
+Solusi:
+• Tambah depth: -d 6
+• Gunakan --allow-external
+• Cek manual apakah website memang punya email
+• Coba target URL yang lebih spesifik
+
+E. PROSES TERLALU LAMBAT
+------------------------
+Solusi:
+• Tambah threads: -t 10
+• Kurangi delay: --delay-min 0.5 --delay-max 1
+• Kurangi depth jika tidak perlu
+• Pastikan koneksi internet stabil
+
+===============================================================================
+
+✅ 5. BEST PRACTICES
+=====================
+
+A. SEBELUM SCRAPING
+-------------------
+• Baca robots.txt website: https://target.com/robots.txt
+• Cek terms of service website
+• Test dengan sample kecil dulu
+• Backup command yang berhasil
+
+B. SAAT SCRAPING
+-----------------
+• Monitor progress bar dan statistik
+• Jangan interrupt di tengah jalan
+• Catat command yang digunakan
+• Monitor penggunaan bandwidth
+
+C. SETELAH SCRAPING
+-------------------
+• Backup hasil ke multiple format
+• Validasi email yang ditemukan
+• Dokumentasikan sumber dan tanggal
+• Clean up duplicate emails
+
+D. ETIKA SCRAPING
+-----------------
+• Gunakan delay yang wajar (min 1 detik)
+• Jangan overwhelm server target
+• Hormati robots.txt kecuali perlu
+• Gunakan untuk tujuan legitimate
+• Jangan scraping data personal sensitif
+
+===============================================================================
+
+💡 6. CONTOH COMMAND LENGKAP
+=============================
+
+A. SCRAPING CEPAT (TESTING)
+----------------------------
+python mail_advanced.py -u https://example.com -d 2 -t 3 --delay-min 1 -o txt
+
+B. SCRAPING STANDARD
+---------------------
+python mail_advanced.py -u https://university.edu -d 4 -t 6 --delay-min 2 --delay-max 3 -o txt,csv
+
+C. SCRAPING COMPREHENSIVE
+-------------------------
+python mail_advanced.py -u https://target.com -d 6 -t 8 --delay-min 2 --delay-max 4 -o txt,csv,json,xlsx --output-dir results/
+
+D. SCRAPING ANTI-BOT WEBSITE
+-----------------------------
+python mail_advanced.py -u https://protected.com --cloudflare --delay-min 3 --delay-max 5 -t 3 --no-robots -o json
+
+E. SCRAPING EXTERNAL DOMAINS
+-----------------------------
+python mail_advanced.py -u https://main-site.com --allow-external -d 5 -t 5 --delay-min 2 -o csv,xlsx
+
+F. SCRAPING DENGAN VERBOSE
+---------------------------
+python mail_advanced.py -u https://target.com -d 4 -t 6 --verbose -o txt,json
+
+===============================================================================
+
+📊 7. INTERPRETASI HASIL
+=========================
+
+A. STATISTIK YANG BAIK
+-----------------------
+• Success Rate > 90% (pages_visited vs pages_failed)
+• Email/Page Ratio > 0.1 (minimal 1 email per 10 halaman)
+• Duration reasonable (tidak terlalu lama)
+• Queue kosong di akhir (semua link terproses)
+
+B. TANDA HASIL OPTIMAL
+-----------------------
+• Banyak email dengan multiple sources
+• Variasi domain email (tidak semua sama)
+• Email dari halaman berbeda-beda
+• Tidak ada error "blocked" atau "forbidden"
+
+C. RED FLAGS
+------------
+• Terlalu banyak pages_failed
+• Semua email dari 1-2 halaman saja
+• Banyak email invalid/spam
+• Proses terhenti di tengah
+
+D. VALIDASI HASIL
+-----------------
+• Cek sample email secara manual
+• Pastikan email format valid
+• Remove duplicate manual jika perlu
+• Cross-check dengan website langsung
+
+===============================================================================
+
+⚖️ 8. PENGGUNAAN ETIS
+======================
+
+A. DO's (LAKUKAN)
+-----------------
+✅ Gunakan delay minimal 1 detik
+✅ Hormati robots.txt
+✅ Limit threads (max 15)
+✅ Scraping untuk research/business legitimate
+✅ Dokumentasikan sumber data
+✅ Respect website terms of service
+✅ Test dengan sample kecil dulu
+✅ Monitor server load impact
+
+B. DON'Ts (JANGAN)
+------------------
+❌ Scraping untuk spam/phishing
+❌ Overwhelm server dengan request berlebihan
+❌ Ignore robots.txt tanpa alasan kuat
+❌ Scraping data personal sensitif
+❌ Jual/share email tanpa consent
+❌ Scraping competitor untuk sabotase
+❌ Bypass security untuk akses illegal
+❌ Scraping website yang explicitly forbid
+
+C. LEGAL CONSIDERATIONS
+-----------------------
+• Cek local laws tentang data scraping
+• Pastikan comply dengan GDPR jika applicable
+• Respect copyright dan intellectual property
+• Gunakan data sesuai intended purpose
+• Consider opt-out mechanisms
+
+===============================================================================
+
+📞 SUPPORT & TROUBLESHOOTING
+=============================
+
+Jika mengalami masalah:
+1. Cek dokumentasi README_advanced.md
+2. Test dengan website sederhana dulu
+3. Coba kurangi parameter (threads, depth)
+4. Pastikan dependencies terinstall lengkap
+5. Cek koneksi internet dan firewall
+
+Developed by: NaufalNyaa x MbullHexWorld
+Version: 2.0
+Last Updated: 2024
+
+===============================================================================
+                              END OF DOCUMENT
+===============================================================================
