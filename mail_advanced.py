@@ -20,6 +20,7 @@ from urllib.parse import urlparse
 from utils import print_banner, print_colored
 from scraper import EmailScraper
 from exporter import DataExporter
+from termcolor import colored
 from config import OUTPUT_FORMATS, DEFAULT_DEPTH, DEFAULT_THREADS
 
 def validate_url(url):
